@@ -1,7 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CustomNotesItem extends StatelessWidget {
-  const CustomNotesItem({super.key});
+  final int index;
+
+  final List colors = [
+    Colors.blue,
+    Colors.yellow,
+    Colors.pink,
+    Colors.green,
+    Colors.cyan,
+  ];
+
+  CustomNotesItem({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +24,7 @@ class CustomNotesItem extends StatelessWidget {
       height: 180,
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Colors.yellow,
+        color: colors[index % colors.length],
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: const Row(
