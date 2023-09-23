@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/bottom_sheet_widget.dart';
 import 'widgets/notes_view_body.dart';
 
 class NotesScreen extends StatelessWidget {
@@ -28,6 +29,9 @@ class CustomFloatingActionButton extends StatelessWidget {
           // ),
           // isScrollControlled: true,
           // useSafeArea: true,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           context: context,
           builder: (contex) {
             return const CustomModelSheetWidget();
@@ -41,14 +45,5 @@ class CustomFloatingActionButton extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class CustomModelSheetWidget extends StatelessWidget {
-  const CustomModelSheetWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
