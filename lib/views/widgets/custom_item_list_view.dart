@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_hive/views/edit_view.dart';
 
 import 'custom_notes.dart';
 
@@ -14,8 +15,16 @@ class CustomItemListView extends StatelessWidget {
         padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return CustomNotesItem(
-            index: index,
+          return GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EditViewScreen(),
+              ),
+            ),
+            child: CustomNotesItem(
+              index: index,
+            ),
           );
         },
       ),
