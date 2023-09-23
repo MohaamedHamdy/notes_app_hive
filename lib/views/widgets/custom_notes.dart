@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomNotesItem extends StatelessWidget {
   final int index;
 
-  final List colors = [
+  final List colors = const [
     Colors.blue,
     Colors.yellow,
     Colors.pink,
@@ -12,7 +12,7 @@ class CustomNotesItem extends StatelessWidget {
     Colors.cyan,
   ];
 
-  CustomNotesItem({
+  const CustomNotesItem({
     Key? key,
     required this.index,
   }) : super(key: key);
@@ -81,7 +81,8 @@ class RightSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 28.0, right: 20.0, bottom: 24.0),
+      padding: const EdgeInsets.only(
+          top: 28.0, right: 20.0, bottom: 24.0, left: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
