@@ -7,17 +7,15 @@ class CustomItemListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 5,
-        padding: EdgeInsets.zero,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return CustomNotesItem(
-            index: index,
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: 5,
+      padding: EdgeInsets.zero,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) {
+        return CustomNotesItem(
+          index: index,
+        );
+      },
     );
   }
 }

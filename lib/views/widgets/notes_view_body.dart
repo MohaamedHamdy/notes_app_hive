@@ -20,7 +20,7 @@ class NotesScreenBody extends StatelessWidget {
           SizedBox(
             height: 24,
           ),
-          CustomItemListView()
+          Expanded(child: CustomItemListView()),
         ],
       ),
     );
