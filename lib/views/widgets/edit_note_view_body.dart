@@ -32,8 +32,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         children: [
           CustomAppBar(
             onPressed: () {
-              widget.note.title = title!;
-              widget.note.description = title!;
+              widget.note.title = title ?? widget.note.title;
+              widget.note.description = title ?? widget.note.title;
+              widget.note.save();
               Navigator.push(
                 context,
                 MaterialPageRoute(
