@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_hive/cubits/cubit/notes_cubit.dart';
 
 import 'package:todo_hive/models/notes_model.dart';
 import 'package:todo_hive/views/notes_view.dart';
@@ -33,8 +35,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           CustomAppBar(
             onPressed: () {
               widget.note.title = title ?? widget.note.title;
-              widget.note.description = title ?? widget.note.title;
+              widget.note.description = content ?? widget.note.description;
               widget.note.save();
+              BlocProvider.of<NotesCubit>(context).fetchNotes();
               Navigator.push(
                 context,
                 MaterialPageRoute(
