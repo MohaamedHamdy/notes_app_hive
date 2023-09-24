@@ -29,7 +29,7 @@ class CustomModelSheetWidget extends StatelessWidget {
           },
           builder: (context, state) {
             return ModalProgressHUD(
-              inAsyncCall: state == AddNoteLoading() ? true : false,
+              inAsyncCall: (state is AddNoteLoading) ? true : false,
               child: const AddNoteForm(),
             );
           },
