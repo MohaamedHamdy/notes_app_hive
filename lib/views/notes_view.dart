@@ -9,6 +9,7 @@ class NotesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      resizeToAvoidBottomInset: true,
       body: NotesScreenBody(),
       floatingActionButton: CustomFloatingActionButton(),
     );
@@ -23,6 +24,7 @@ class CustomFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         showModalBottomSheet(
+          isScrollControlled: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
