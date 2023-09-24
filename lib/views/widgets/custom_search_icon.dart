@@ -5,10 +5,11 @@ class CustomSearchIcon extends StatelessWidget {
   const CustomSearchIcon({
     Key? key,
     this.isSearch = true,
+    this.onPressed,
   }) : super(key: key);
 
   final bool isSearch;
-
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,7 @@ class CustomSearchIcon extends StatelessWidget {
       ),
       child: Center(
         child: IconButton(
-          onPressed: () {},
+          onPressed: onPressed,
           icon: Icon(
             isSearch ? Icons.search : Icons.done,
             size: 28,

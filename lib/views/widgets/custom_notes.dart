@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_hive/models/notes_model.dart';
 
 import '../../cubits/cubit/notes_cubit.dart';
+import '../edit_view.dart';
 
 class CustomNotesItem extends StatelessWidget {
   final NotesModel notes;
@@ -15,26 +16,36 @@ class CustomNotesItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 180,
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        color: Color(notes.color) != Colors.black
-            ? Color(notes.color)
-            : Colors.red,
-        borderRadius: BorderRadius.circular(12.0),
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditViewScreen(
+            note: notes,
+          ),
+        ),
       ),
-      child: Row(
-        children: [
-          LeftSection(
-            notes: notes,
-          ),
-          const Spacer(),
-          RightSection(
-            notes: notes,
-          ),
-        ],
+      child: Container(
+        width: double.infinity,
+        height: 180,
+        margin: const EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          color: Color(notes.color) != Colors.black
+              ? Color(notes.color)
+              : Colors.red,
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Row(
+          children: [
+            LeftSection(
+              notes: notes,
+            ),
+            const Spacer(),
+            RightSection(
+              notes: notes,
+            ),
+          ],
+        ),
       ),
     );
   }

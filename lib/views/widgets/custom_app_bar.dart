@@ -6,10 +6,11 @@ import 'custom_search_icon.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
+    this.onPressed,
     this.text = 'Notes',
     this.isSearch = true,
   }) : super(key: key);
-
+  final Function()? onPressed;
   final String text;
   final bool isSearch;
 
@@ -23,6 +24,7 @@ class CustomAppBar extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall!,
         ),
         CustomSearchIcon(
+          onPressed: onPressed,
           isSearch: isSearch,
         ),
       ],
