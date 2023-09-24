@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:todo_hive/cubits/add_note_cubit/add_note_cubit.dart';
 
+import '../../cubits/cubit/notes_cubit.dart';
 import 'add_note_form.dart';
 
 class CustomModelSheetWidget extends StatelessWidget {
@@ -20,10 +21,9 @@ class CustomModelSheetWidget extends StatelessWidget {
             bottom: MediaQuery.of(context).viewInsets.bottom + 24),
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
           listener: (context, state) {
-            if (state is AddNoteFailure) {
-              print(state.error);
-            }
+            if (state is AddNoteFailure) {}
             if (state is AddNoteSuccess) {
+              BlocProvider.of<NotesCubit>(context).fetchNotes();
               Navigator.pop(context);
             }
           },

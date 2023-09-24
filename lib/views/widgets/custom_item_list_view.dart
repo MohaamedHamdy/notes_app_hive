@@ -31,7 +31,6 @@ class CustomItemListView extends StatelessWidget {
                   ),
                 ),
                 child: CustomNotesItem(
-                  index: index,
                   notes: notes[index],
                 ),
               );

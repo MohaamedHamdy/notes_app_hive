@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_hive/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:todo_hive/cubits/cubit/notes_cubit.dart';
 import 'package:todo_hive/models/notes_model.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -67,7 +68,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       child: GestureDetector(
                         onTap: () {
                           selectedColor = colors[index].value;
-                          print(selectedColor);
                         },
                         child: CircleAvatar(
                           backgroundColor: colors[index],
@@ -82,7 +82,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 formKey.currentState!.save();
 
                 DateTime date = DateTime.now();
-                String formattedDate = DateFormat('yyyy-MM-dd').format(date);
+                String formattedDate = DateFormat.yMd().format(date);
 
                 var notesModel = NotesModel(
                   title: title!,

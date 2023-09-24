@@ -1,25 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_hive/models/notes_model.dart';
 
+import '../../cubits/cubit/notes_cubit.dart';
+
 class CustomNotesItem extends StatelessWidget {
-  final int index;
-
-  final List colors = const [
-    Colors.blue,
-    Colors.yellow,
-    Colors.pink,
-    Colors.green,
-    Colors.cyan,
-  ];
-
   final NotesModel notes;
 
   const CustomNotesItem({
     Key? key,
-    required this.index,
     required this.notes,
   }) : super(key: key);
 
@@ -108,7 +98,10 @@ class RightSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              notes.delete();
+              BlocProvider.of<NotesCubit>(context).fetchNotes();
+            },
             icon: const Icon(
               Icons.delete,
               size: 28,
@@ -117,7 +110,7 @@ class RightSection extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            '1',
+            notes.date,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Colors.black.withOpacity(0.3),
                 ),
