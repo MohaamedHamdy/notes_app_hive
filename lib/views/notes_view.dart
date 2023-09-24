@@ -23,12 +23,6 @@ class CustomFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         showModalBottomSheet(
-          // constraints: const BoxConstraints(
-          //   minHeight: 400,
-          //   // maxHeight: double.infinity,
-          // ),
-          // isScrollControlled: true,
-          // useSafeArea: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

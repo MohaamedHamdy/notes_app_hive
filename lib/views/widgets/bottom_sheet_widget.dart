@@ -8,19 +8,64 @@ class CustomModelSheetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: AddNoteForm(),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  String? title, subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      autovalidateMode: autovalidateMode,
+      key: formKey,
       child: ListView(
         shrinkWrap: true,
-        children: const [
-          CustomTextField(hint: 'Title'),
-          SizedBox(height: 20),
+        children: [
+          CustomTextField(
+            hint: 'Title',
+            onSaved: (value) {
+              title = value;
+              return null;
+            },
+          ),
+          const SizedBox(height: 20),
           CustomTextField(
             hint: 'content',
             maxLines: 5,
+            onSaved: (value) {
+              subtitle = value;
+              return null;
+            },
           ),
-          SizedBox(height: 40),
-          CustomButton(),
+          const SizedBox(height: 40),
+          CustomButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+                setState(() {});
+              }
+            },
+          ),
         ],
       ),
     );
