@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import 'package:todo_hive/models/notes_model.dart';
 
 class CustomNotesItem extends StatelessWidget {
   final int index;
@@ -12,9 +15,12 @@ class CustomNotesItem extends StatelessWidget {
     Colors.cyan,
   ];
 
+  final NotesModel notes;
+
   const CustomNotesItem({
     Key? key,
     required this.index,
+    required this.notes,
   }) : super(key: key);
 
   @override
@@ -24,14 +30,20 @@ class CustomNotesItem extends StatelessWidget {
       height: 180,
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: colors[index % colors.length],
+        color: Color(notes.color) != Colors.black
+            ? Color(notes.color)
+            : Colors.red,
         borderRadius: BorderRadius.circular(12.0),
       ),
-      child: const Row(
+      child: Row(
         children: [
-          LeftSection(),
-          Spacer(),
-          RightSection(),
+          LeftSection(
+            notes: notes,
+          ),
+          const Spacer(),
+          RightSection(
+            notes: notes,
+          ),
         ],
       ),
     );
@@ -39,8 +51,12 @@ class CustomNotesItem extends StatelessWidget {
 }
 
 class LeftSection extends StatelessWidget {
-  const LeftSection({super.key});
+  const LeftSection({
+    Key? key,
+    required this.notes,
+  }) : super(key: key);
 
+  final NotesModel notes;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,7 +67,7 @@ class LeftSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Flutter Tips',
+              notes.title,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -61,7 +77,7 @@ class LeftSection extends StatelessWidget {
               height: 18,
             ),
             Text(
-              'Build your carrer with confidence',
+              notes.description,
               maxLines: 6,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -76,7 +92,12 @@ class LeftSection extends StatelessWidget {
 }
 
 class RightSection extends StatelessWidget {
-  const RightSection({super.key});
+  const RightSection({
+    Key? key,
+    required this.notes,
+  }) : super(key: key);
+
+  final NotesModel notes;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +117,7 @@ class RightSection extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            'Sep 21/2023',
+            '1',
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: Colors.black.withOpacity(0.3),
                 ),
