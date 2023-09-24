@@ -13,7 +13,11 @@ class CustomModelSheetWidget extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddNoteCubit(),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+        padding: EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+            top: 24,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 24),
         child: BlocConsumer<AddNoteCubit, AddNoteState>(
           listener: (context, state) {
             if (state is AddNoteFailure) {
